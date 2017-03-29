@@ -7,7 +7,7 @@ use yii\data\Pagination;
 use yii\web\Request;
 use yii\web\UploadedFile;
 use xj\uploadify\UploadAction;
-
+use hongyukeji\qiniu\Qiniu;
 class BrandController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -164,5 +164,18 @@ class BrandController extends \yii\web\Controller
         $brands=Brand::find()->where(['status'=>-1])->limit($pager->limit)->offset($pager->offset)->all();
         //分配数据，显示页面
         return $this->render('recyle',['brands'=>$brands,'pager'=>$pager]);
+    }
+    public function actionTest(){
+        $ak = 'sss';
+        $sk = 'sss';
+        $domain = 'http://demo.domain.com/';
+        $bucket = 'demo';
+
+        $qiniu = new Qiniu($ak, $sk,$domain, $bucket);
+        $fileName='D:\www\yiishop\backend\web\upload\brand\58da11b134116.jpg';
+        $key = time();
+        $qiniu->uploadFile($fileName,$key);
+        $url = $qiniu->getLink($key);
+        return $url;
     }
 }
