@@ -136,10 +136,18 @@ class BrandController extends \yii\web\Controller
                 'afterValidate' => function (UploadAction $action) {},
                 'beforeSave' => function (UploadAction $action) {},
                 'afterSave' => function (UploadAction $action) {
-                    $action->output['fileUrl'] = $action->getWebUrl();
-                    $action->getFilename(); // "image/yyyymmddtimerand.jpg"
+                    /*$action->output['fileUrl'] = $action->getWebUrl();*/
+                    $file=$action->getFilename(); // "image/yyyymmddtimerand.jpg"
                     $action->getWebUrl(); //  "baseUrl + filename, /upload/image/yyyymmddtimerand.jpg"
-                    $action->getSavePath(); // "/var/www/htdocs/upload/image/yyyymmddtimerand.jpg"
+                   $path= $action->getSavePath(); // "/var/www/htdocs/upload/image/yyyymmddtimerand.jpg"
+                    $ak = '5mC-WESG9kQDU3hhA0IaLN97TWZNwdNdmwiDgcrE';
+                    $sk = 'MLhNyMnKZ1dq1dLgkZo1hE2S5gzT7FiXziWmesNZ';
+                    $domain = 'http://onk49e5lt.bkt.clouddn.com';
+                    $bucket = 'yii-shop';
+                    $qiniu = new Qiniu($ak, $sk,$domain, $bucket);
+                   $url= $qiniu->getLink($file);
+                    $action->output['fileUrl'] =$url;
+                    $qiniu->uploadFile($path,$file);
                 },
             ],
         ];
@@ -166,16 +174,13 @@ class BrandController extends \yii\web\Controller
         return $this->render('recyle',['brands'=>$brands,'pager'=>$pager]);
     }
     public function actionTest(){
-        $ak = 'sss';
-        $sk = 'sss';
-        $domain = 'http://demo.domain.com/';
-        $bucket = 'demo';
-
+        $ak = '5mC-WESG9kQDU3hhA0IaLN97TWZNwdNdmwiDgcrE';
+        $sk = 'MLhNyMnKZ1dq1dLgkZo1hE2S5gzT7FiXziWmesNZ';
+        $domain = 'onk49e5lt.bkt.clouddn.com';
+        $bucket = 'yii-shop';
         $qiniu = new Qiniu($ak, $sk,$domain, $bucket);
-        $fileName='D:\www\yiishop\backend\web\upload\brand\58da11b134116.jpg';
         $key = time();
-        $qiniu->uploadFile($fileName,$key);
-        $url = $qiniu->getLink($key);
-        return $url;
+        $qiniu->uploadFile('D:\www\yiishop\backend\web\upload\ad\75\ad75214bf59d98087fe4299dfc0e3f778ea5c1d3.jpg',$key);
+        return $url = $qiniu->getLink($key);
     }
 }

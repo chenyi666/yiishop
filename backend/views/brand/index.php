@@ -15,7 +15,7 @@ echo \yii\bootstrap\Html::a('回收站',['brand/recycle'],['class'=>'btn btn-dan
         <tr>
             <td><?=$brand->id?></td>
             <td><?=$brand->name?></td>
-            <td><?=\yii\bootstrap\Html::img('@web'.$brand->logo,['height'=>'30px'])?></td>
+            <td><?=\yii\bootstrap\Html::img($brand->logoUrl(),['height'=>'30px'])?></td>
             <td><?=\backend\models\Brand::$status_zt[$brand->status]?></td>
             <td><?=$brand->sort?></td>
             <td><?=\yii\bootstrap\Html::a('编辑',['brand/edit','id'=>$brand->id],['class'=>'btn btn-success'])?> <?=\yii\bootstrap\Html::a('删除',['brand/del','id'=>$brand->id],['class'=>'btn btn-danger'])?></td>
