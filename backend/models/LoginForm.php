@@ -17,12 +17,14 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
+/*    public $code;*/
     public $rememberMe = true;
     public function rules()
     {
         return [
             [['username','password'],'required'],
-            ['rememberMe','boolean']
+            ['rememberMe','boolean'],
+   /*         ['code','captcha']*/
         ];
     }
     public function attributeLabels()
@@ -30,6 +32,7 @@ class LoginForm extends Model
         return [
             'username'=>'用户名',
             'password'=>'密码',
+            /*'code'=>'验证码',*/
             'rememberMe'=>'一周内自动登录'
         ];
     }
@@ -38,9 +41,6 @@ class LoginForm extends Model
       /*  var_dump($this->password);
         exit;*/
         if($this->validate()){
-            /*
-             *            $admin=Admin::find()->where(['=','username',$this->username])->orWhere('=','email',$this->username);
-             */
             //根据用户名查找用户
             $admin1=Admin::findOne(['username'=>$this->username]);
             $admin2=Admin::findOne(['email'=>$this->username]);

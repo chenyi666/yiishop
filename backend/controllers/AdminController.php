@@ -5,6 +5,8 @@ namespace backend\controllers;
 use backend\accessfilter\AccessFilter;
 use backend\models\Admin;
 use backend\models\LoginForm;
+use yii\captcha\Captcha;
+use yii\captcha\CaptchaAction;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
@@ -45,7 +47,6 @@ class AdminController extends \yii\web\Controller
                 $model->auth_key=\Yii::$app->security->generateRandomString();
                 //第一次设置最后登录ip为注册时的ip
                 $model->last_login_ip=$_SERVER['REMOTE_ADDR'];
-               $res=$model->save(false);
                 //实例化组件
                 $authManager=\Yii::$app->authManager;
            /*     var_dump($model->roles);
@@ -156,5 +157,12 @@ class AdminController extends \yii\web\Controller
                 ]
         ];
     }
+/*    public function action(){
+        return [
+            'captcha'=>[
+                'class'=>CaptchaAction::className(),
+            ]
+        ];
+    }*/
 
 }

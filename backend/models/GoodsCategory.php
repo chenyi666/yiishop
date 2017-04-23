@@ -80,4 +80,7 @@ class GoodsCategory extends \yii\db\ActiveRecord
     {
         return new GoodsCategoryQuery(get_called_class());
     }
+    public function getChild(){
+        return $this->hasMany($this,['parent_id'=>'id']);
+    }
 }

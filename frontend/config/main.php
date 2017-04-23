@@ -16,7 +16,7 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => \frontend\models\Member::className(),
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -43,6 +43,9 @@ return [
             'rules' => [
             ],
         ],
+        'CookieCar'=>[
+            'class'=>\frontend\components\CookieHandler::className(),
+        ]
 
     ],
     'params' => $params,
