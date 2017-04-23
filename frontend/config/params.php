@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'adminPicUrl'=>'http://admin.yiishop.com/',
+    'adminPicUrl'=>'http://101.200.220.149/yiishop/backend/web/',
     'wechat'=>[
         /**
          * Debug 模式，bool 值：true/false
