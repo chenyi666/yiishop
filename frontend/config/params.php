@@ -12,10 +12,10 @@ return [
         /**
          * 账号基本信息，请从微信公众平台/开放平台获取
          */
-        'app_id'  => 'wx4cdf13aedac0a9b1',         // AppID
-        'secret'  => 'a82c403a2cdbccf0d6f51b081828421c',     // AppSecret
-        'token'   => 'itsource',          // Token
-        'aes_key' => 'itsource',                    // EncodingAESKey，安全模式下请一定要填写！！！
+        'app_id'  => 'wxab9d4ac9748ec868',         // AppID
+        'secret'  => 'f8ec7e1bc4ec1bbbc345f74f0278e56b',     // AppSecret
+        'token'   => 'chenyi',          // Token
+        'aes_key' => 'chenyi',                    // EncodingAESKey，安全模式下请一定要填写！！！
         /**
          * 日志配置
          *
